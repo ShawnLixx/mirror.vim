@@ -217,6 +217,7 @@ let g:mirror#open_with = 'Explore'
 let g:mirror#diff_layout = 'vsplit'
 let g:mirror#ssh_auto_cd = 1
 let g:mirror#ssh_shell = '$SHELL --login'
+let g:mirror#ssh_in_new_tab = 1
 let g:mirror#cache_dir = expand('~/.cache/mirror.vim')
 let g:netrw_silent = 1
 let g:mirror#spawn_command = '! '
@@ -231,6 +232,7 @@ connection and changing directory. Used only if `g:mirror#ssh_auto_cd` enabled.
 By default, shell will be invoked as "login shell" and all scripts such as
 `/etc/profile` and `~/.profile` will be loaded. It's necessary for tools like
 [RVM](https://rvm.io/) (Ruby Version Manager).
+* `g:mirror#ssh_in_new_tab` - open ssh terminal in new tab in vim. Only works if the vim has `terminal` feature.
 * `g:mirror#cache_dir` - directory where cache is stored. Currently used for saving default environments, that set via `:MirrorEnvironment! <environment>`.
 * `g:netrw_silent` - this variable is related to netrw configuration.  
 Possible values:

@@ -33,6 +33,7 @@ let g:mirror#open_with = get(g:, 'mirror#open_with', 'Explore')
 let g:mirror#diff_layout = get(g:, 'mirror#diff_layout', 'vsplit')
 let g:mirror#ssh_auto_cd = get(g:, 'mirror#ssh_auto_cd', 1)
 let g:mirror#ssh_shell = get(g:, 'mirror#ssh_shell', '$SHELL --login')
+let g:mirror#ssh_in_new_tab = get(g:, 'mirror#ssh_in_new_tab', 1)
 let g:mirror#cache_dir = expand(get(g:, 'mirror#cache_dir', '~/.cache/mirror.vim'))
 let g:mirror#spawn_command = '!'
 let g:netrw_silent = get(g:, 'netrw_silent', 1)
@@ -315,7 +316,13 @@ function! s:SSHConnection(env)
     let ssh_command .= printf(" -t 'cd %s && %s'", path, g:mirror#ssh_shell)
   endif
   " example: ssh -p 23 user@host -t 'cd my_project && $SHELL --login'
-  if has('nvim')
+  if has('terminal')
+    execute 'terminal ++close bash -c "' . ssh_command . '"'
+    if g:mirror#ssh_in_new_tab
+      " Swtich current buffer to new tab
+      execute "normal \<C-W>T"
+    endif
+  elseif has('nvim')
     execute 'tabnew | terminal ' . ssh_command
   else
     execute g:mirror#spawn_command . ssh_command
