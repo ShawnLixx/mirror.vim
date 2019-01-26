@@ -445,38 +445,65 @@ function! mirror#InitForBuffer(current_project)
   let b:project_with_mirror = a:current_project
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorEdit
         \ call mirror#Do(<q-args>, 'file', 'edit')
+  command! MEdit MirrorEdit
+
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorVEdit
         \ call mirror#Do(<q-args>, 'file', 'vsplit')
+  command! MVEdit MirrorVEdit
+
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorSEdit
         \ call mirror#Do(<q-args>, 'file', 'split')
+  command! MSEdit MirrorSEdit
+
 
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorOpen
         \ call mirror#Do(<q-args>, 'project_dir', g:mirror#open_with)
+  command! MOpen MirrorOpen
+
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorRoot
         \ call mirror#Do(<q-args>, 'root_dir', g:mirror#open_with)
+  command! MRoot MirrorRoot
+
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorParentDir
         \ call mirror#Do(<q-args>, 'parent_dir', g:mirror#open_with)
+  command! MParentDir MirrorParentDir
+
 
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorDiff
         \ call mirror#Do(<q-args>, 'diff', g:mirror#diff_layout)
+  command! MDiff MirrorDiff
+
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorVDiff
         \ call mirror#Do(<q-args>, 'diff', 'vsplit')
+  command! MVDiff MirrorVDiff
+
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorSDiff
         \ call mirror#Do(<q-args>, 'diff', 'split')
+  command! MSDiff MirrorSDiff
+
 
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorPush
         \ call mirror#Do(<q-args>, 'push', '')
+  command! MPush MirrorPush
+
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorPull
         \ call mirror#Do(<q-args>, 'pull', '')
+  command! MPull MirrorPull
+
 
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorSSH
         \ call mirror#Do(<q-args>, 'ssh', '')
+  command! MSSH MirrorSSH
+
 
   command! -buffer -complete=customlist,s:EnvCompletion -nargs=? MirrorInfo
         \ call mirror#Do(<q-args>, 'info', '')
+  command! MInfo MirrorInfo
+
 
   command! -buffer -bang -complete=customlist,s:EnvCompletion -nargs=?
         \ MirrorEnvironment call mirror#SetDefaultEnv(<q-args>, <bang>0)
+  command! MEnvironment MirrorEnvironment
 endfunction
 
 function! mirror#ProjectDiscovery()
